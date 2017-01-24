@@ -38,7 +38,6 @@ public class AddCourseHandler {
 
                 // If add success
                 if(rowId > 0){
-                    FragmentContainerManager containerManager = new FragmentContainerManager(activity);
                     CourseListFragment courseListFragment = new CourseListFragment();
                     mainCom.replaceFragment(courseListFragment);
                 }

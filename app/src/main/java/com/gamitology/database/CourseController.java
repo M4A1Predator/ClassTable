@@ -90,4 +90,25 @@ public class CourseController {
         return (int)newRowId;
     }
 
+    public int removeCourse(Course course){
+        // Remove course from Table
+
+        if(course.getId() == 0){
+            return -1;
+        }
+
+        // Get DB
+        CourseTableDBHelper dbHelper = new CourseTableDBHelper(this.context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // Prepare data
+        String filter = CourseEntry.ATTRIBUTE_COURSE_ID + " = ?";
+        String [] args = { course.getId()+"" };
+
+        // Delete
+        int affectedRow = db.delete(CourseEntry.TABLE_NAME, filter, args);
+        return affectedRow;
+
+    }
+
 }

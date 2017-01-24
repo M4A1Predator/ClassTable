@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="course"
+            type="com.gamitology.models.Course"/>
+        <variable
+            name="handler"
+            type="com.gamitology.handlers.CourseListHandler"/>
+    </data>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/course_list_item_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/CourseListItem"
-            android:text="Course"/>
+            android:orientation="horizontal"
+            android:weightSum="1">
 
+            <TextView
+                android:id="@+id/course_list_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/CourseListItem"
+                android:text="@{course.code}"
+                android:layout_weight="0.85"/>
+
+            <Button
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text="DEL"
+                android:onClick="@{handler.deleteCourse(course)}"
+                android:layout_weight="0.15"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</layout>
+

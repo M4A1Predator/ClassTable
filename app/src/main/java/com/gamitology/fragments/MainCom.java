@@ -9,5 +9,7 @@ import android.support.v4.app.Fragment;
 public interface MainCom {
 
     public void replaceFragment(Fragment fragment);
+    public void replaceFragment(Fragment fragment, boolean addToBackStack);
+    public void refreshFragment(Fragment fragment);
 
 }

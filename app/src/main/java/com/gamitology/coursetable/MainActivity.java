@@ -1,6 +1,5 @@
 package com.gamitology.coursetable;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,11 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.gamitology.fragments.BaseFragment;
-import com.gamitology.fragments.CourseContainerFragment;
+import com.gamitology.fragments.AddEventFragment;
 import com.gamitology.fragments.CourseListFragment;
 import com.gamitology.fragments.MainCom;
 import com.gamitology.fragments.MainFragment;
@@ -122,6 +119,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_courses) {
             CourseListFragment courseListFragment = new CourseListFragment();
             replaceFragmentInContainer(courseListFragment);
+        } else if (id == R.id.nav_add_event) {
+            AddEventFragment addEventFragment = new AddEventFragment();
+            replaceFragment(addEventFragment);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -143,5 +143,26 @@ public class MainActivity extends AppCompatActivity
         ft.addToBackStack(null);
         ft.commit();
         Toast.makeText(this, "TEST " + R.id.fragment_container, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void replaceFragment(Fragment fragment, boolean addToBackStack) {
+        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, fragment);
+        if(addToBackStack){
+            ft.addToBackStack(null);
+        }
+        ft.commit();
+        Toast.makeText(this, "TEST " + R.id.fragment_container, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void refreshFragment(Fragment fragment) {
+
+        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+        ft.detach(fragment);
+        ft.attach(fragment);
+        ft.commit();
+
     }
 }
