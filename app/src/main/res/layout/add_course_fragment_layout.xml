@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="course"
+            type="com.gamitology.models.Course"/>
+        <variable
+            name="handler"
+            type="com.gamitology.handlers.AddCourseHandler"/>
+    </data>
+
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/course_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={course.code}"
+            android:hint="CODE"/>
+
+        <EditText
+            android:id="@+id/cour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={course.name}"
+            android:hint="Name"/>
+
+        <Button
+            android:id="@+id/submit_course_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{handler.addHandler(course)}"
+            android:text="Add"/>
+
+    </LinearLayout>
+</layout>
