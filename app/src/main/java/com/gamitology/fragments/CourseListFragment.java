@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.gamitology.adapters.CourseAdapter;
 import com.gamitology.coursetable.R;
 import com.gamitology.database.CourseController;
+import com.gamitology.managers.FragmentContainerManager;
 import com.gamitology.models.Course;
 
 import java.util.ArrayList;

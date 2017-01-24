@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainCom {
 
     private MainFragment mainFragment;
-    private CourseContainerFragment courseContainerFragment;
     private List<Fragment> containerList;
 
     @Override
@@ -61,7 +60,6 @@ public class MainActivity extends AppCompatActivity
 
         // Assign Fragment
         this.mainFragment = new MainFragment();
-        this.courseContainerFragment = new CourseContainerFragment();
 
         // Start Default fragment
         replaceFragmentInContainer(mainFragment);
@@ -122,8 +120,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             replaceFragmentInContainer(this.mainFragment);
         } else if (id == R.id.nav_courses) {
-//            CourseListFragment courseListFragment = new CourseListFragment();
-            replaceFragmentInContainer(this.courseContainerFragment);
+            CourseListFragment courseListFragment = new CourseListFragment();
+            replaceFragmentInContainer(courseListFragment);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -134,18 +132,16 @@ public class MainActivity extends AppCompatActivity
     private void replaceFragmentInContainer(Fragment fragment){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, fragment);
+        ft.addToBackStack(null);
         ft.commit();
     }
 
     @Override
     public void replaceFragment(Fragment fragment) {
-//        this.mainFragment.replaceFragment(fragment);
-
         FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main_fragment_container, fragment);
+        ft.replace(R.id.fragment_container, fragment);
         ft.addToBackStack(null);
         ft.commit();
-
-        Toast.makeText(this, "TEST", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "TEST " + R.id.fragment_container, Toast.LENGTH_SHORT).show();
     }
 }

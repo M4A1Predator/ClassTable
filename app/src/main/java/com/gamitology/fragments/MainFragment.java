@@ -27,11 +27,13 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate Layout
         View view =  inflater.inflate(R.layout.main_fragment_layout, container, false);
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//
+//        TestFragment testFragment = new TestFragment();
+//        ft.replace(R.id.main_fragment_container, testFragment);
+//        ft.commit();
 
-        TestFragment testFragment = new TestFragment();
-        ft.replace(R.id.main_fragment_container, testFragment);
-        ft.commit();
+
 
         return view;
     }
