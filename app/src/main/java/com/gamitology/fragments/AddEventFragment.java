@@ -47,7 +47,7 @@ public class AddEventFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 //        view = inflater.inflate(R.layout.add_event_fragment_layout, container, false);
-        binding = DataBindingUtil.inflate(inflater, R.layout.add_event_fragment_layout, container, false);
+        binding = AddEventFragmentLayoutBinding.inflate(getLayoutInflater(savedInstanceState));
         view = binding.getRoot();
 
         // Set handler

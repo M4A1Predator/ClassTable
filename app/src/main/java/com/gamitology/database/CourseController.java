@@ -39,7 +39,7 @@ public class CourseController {
                 CourseEntry.ATTRIBUTE_COURSE_DETAIL,
         };
 
-        // Set selection
+        // Set filter
         String filter = "";
 
         Cursor cursor = db.query(CourseEntry.TABLE_NAME, projection, null, null, null, null, null);
@@ -109,6 +109,37 @@ public class CourseController {
         int affectedRow = db.delete(CourseEntry.TABLE_NAME, filter, args);
         return affectedRow;
 
+    }
+
+    public Course orm(int courseId, String courseCode, String courseName, String courseDetail){
+
+        Course course = new Course();
+
+        // ORM
+        course.setId(courseId);
+        course.setCode(courseCode);
+        course.setName(courseName);
+        course.setDetail(courseDetail);
+
+        return course;
+    }
+
+    public static Course orm(Cursor cursor){
+
+        Course course = new Course();
+
+        int courseId = cursor.getInt(cursor.getColumnIndex(CourseEntry.ATTRIBUTE_COURSE_ID));
+        String courseCode = cursor.getString(cursor.getColumnIndex(CourseEntry.ATTRIBUTE_COURSE_CODE));
+        String courseName = cursor.getString(cursor.getColumnIndex(CourseEntry.ATTRIBUTE_COURSE_NAME));
+        String courseDetail = cursor.getString(cursor.getColumnIndex(CourseEntry.ATTRIBUTE_COURSE_DETAIL));
+
+        // ORM
+        course.setId(courseId);
+        course.setCode(courseCode);
+        course.setName(courseName);
+        course.setDetail(courseDetail);
+
+        return course;
     }
 
 }

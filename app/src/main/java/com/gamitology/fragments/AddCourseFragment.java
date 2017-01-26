@@ -31,7 +31,8 @@ public class AddCourseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         // Bind data
-        final AddCourseFragmentLayoutBinding binding = DataBindingUtil.inflate(inflater, R.layout.add_course_fragment_layout, container, false);
+//        final AddCourseFragmentLayoutBinding binding = DataBindingUtil.inflate(inflater, R.layout.add_course_fragment_layout, container, false);
+        AddCourseFragmentLayoutBinding binding = AddCourseFragmentLayoutBinding.inflate(getLayoutInflater(savedInstanceState));
         // Set view
         view = binding.getRoot();
         binding.setCourse(course);

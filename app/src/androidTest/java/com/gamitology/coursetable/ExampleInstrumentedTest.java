@@ -3,9 +3,12 @@ package com.gamitology.coursetable;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 
 import com.gamitology.database.CourseController;
+import com.gamitology.database.EventController;
 import com.gamitology.models.Course;
+import com.gamitology.models.Event;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,5 +57,20 @@ public class ExampleInstrumentedTest {
 
         assertEquals(insertList.size(), courseList.size());
 
+    }
+
+    @Test
+    public void getEventList(){
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        EventController eventController = new EventController(appContext);
+
+        List<Event> eventList = eventController.getEventList();
+
+        for (Event event : eventList){
+            System.out.println(event.toString());
+            Log.d(" ======= ", event.toString());
+        }
+
+        assertEquals(eventList.size()+"", "1");
     }
 }
