@@ -97,6 +97,47 @@ public class EventController {
 
     }
 
+    public List<Event> getEventByDay(Day day){
+
+        List<Event> eventList = new ArrayList<>();
+
+        // Init DB
+        CourseTableDBHelper dbHelper = new CourseTableDBHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        // Set projection
+        String [] projections = {
+                EventEntry.ATTRIBUTE_EVENT_ID,
+                EventEntry.ATTRIBUTE_EVENT_DAY,
+                EventEntry.ATTRIBUTE_EVENT_START_TIME,
+                EventEntry.ATTRIBUTE_EVENT_END_TIME,
+                EventEntry.ATTRIBUTE_EVENT_LOCATION,
+                EventEntry.ATTRIBUTE_EVENT_COURSE_ID
+        };
+
+        // Set filter
+        String filter = "";
+
+        // Get data
+        String sqlString = "SELECT * FROM " + EventEntry.TABLE_NAME + " JOIN " + CourseEntry.TABLE_NAME
+                + " ON " + EventEntry.ATTRIBUTE_EVENT_COURSE_ID + " = " + CourseEntry.ATTRIBUTE_COURSE_ID +
+                " WHERE " + EventEntry.ATTRIBUTE_EVENT_DAY + " = ? ;";
+        String [] sqlArgs = {
+                day.getId()
+        };
+
+        Cursor cursor = db.rawQuery(sqlString, sqlArgs);
+
+        // ORM
+        while (cursor.moveToNext()){
+            Event event = EventController.orm(cursor);
+            eventList.add(event);
+        }
+
+        return eventList;
+
+    }
+
     public static Event orm(Cursor cursor){
 
         Event event = new Event();

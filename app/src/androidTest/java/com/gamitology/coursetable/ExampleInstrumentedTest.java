@@ -8,6 +8,7 @@ import android.util.Log;
 import com.gamitology.database.CourseController;
 import com.gamitology.database.EventController;
 import com.gamitology.models.Course;
+import com.gamitology.models.Day;
 import com.gamitology.models.Event;
 
 import org.junit.Test;
@@ -67,10 +68,25 @@ public class ExampleInstrumentedTest {
         List<Event> eventList = eventController.getEventList();
 
         for (Event event : eventList){
+//            System.out.println(event.toString());
+            Log.d(" ======= ", event.toString());
+        }
+
+        assertEquals(eventList.size()+"", "1");
+    }
+
+    @Test
+    public void getEventDay(){
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        EventController eventController = new EventController(appContext);
+        List<Event> eventList = eventController.getEventByDay(Day.getDayByIndex(1));
+
+        for (Event event : eventList){
             System.out.println(event.toString());
             Log.d(" ======= ", event.toString());
         }
 
         assertEquals(eventList.size()+"", "1");
+
     }
 }

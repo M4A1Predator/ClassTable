@@ -7,6 +7,7 @@ package com.gamitology.models;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Day {
@@ -95,5 +96,55 @@ public class Day {
 
         return day;
     }
+
+
+    public static Day getToDay(){
+
+        Calendar c = Calendar.getInstance();
+        List<Day> dayList = Day.getDays();
+
+        Day day = null;
+
+        int dow = c.get(Calendar.DAY_OF_WEEK);
+        switch (dow){
+            case Calendar.MONDAY: day = dayList.get(0);
+            case Calendar.TUESDAY: day = dayList.get(1);
+            case Calendar.WEDNESDAY: day = dayList.get(2);
+            case Calendar.THURSDAY: day = dayList.get(3);
+            case Calendar.FRIDAY: day = dayList.get(4);
+            case Calendar.SATURDAY: day = dayList.get(5);
+        }
+
+        return day;
+    }
+
+    public static int getToDayInt(){
+
+        Calendar c = Calendar.getInstance();
+        List<Day> dayList = Day.getDays();
+
+        int index = 0;
+
+        int dow = c.get(Calendar.DAY_OF_WEEK);
+        switch (dow){
+            case Calendar.MONDAY: index = 0;
+            case Calendar.TUESDAY: index = 1;
+            case Calendar.WEDNESDAY: index  = 2;
+            case Calendar.THURSDAY: index  = 3;
+            case Calendar.FRIDAY: index = 4;
+            case Calendar.SATURDAY: index = 5;
+        }
+
+        return index;
+    }
+
+    public static Day getDayByIndex(int i){
+        List<Day> dayList = Day.getDays();
+        if(i < dayList.size()){
+            return dayList.get(i);
+        }
+        return null;
+    }
+
 }
 
