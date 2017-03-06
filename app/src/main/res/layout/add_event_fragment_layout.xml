@@ -30,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!-- select course -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,6 +49,7 @@
                     android:textAlignment="center" />
             </LinearLayout>
 
+            <!-- select day -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,6 +70,7 @@
 
             </LinearLayout>
 
+            <!-- start time -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +82,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Start Time" />
+                    android:hint="Start Time"
+                    android:textColor="#FFF"
+                    android:textColorHint="#FFF"/>
 
             </LinearLayout>
 
@@ -88,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:text="To" />
 
+            <!-- end time -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,9 +104,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="End Time" />
+                    android:hint="End Time"
+                    android:textColor="#FFF"
+                    android:textColorHint="#FFF"/>
             </LinearLayout>
 
+            <!-- location -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -118,13 +127,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:hint="ROOM"
-                    android:text="@={event.location}"/>
+                    android:text="@={event.location}"
+                    android:textColor="#FFF"
+                    android:textColorHint="#FFF"/>
             </LinearLayout>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add Event"
+                android:textColor="#000"
                 android:onClick="@{handler.addEvent(event)}"/>
 
         </LinearLayout>

@@ -63,7 +63,7 @@ public class EventController {
             Event event = EventController.orm(cursor);
             eventList.add(event);
         }
-
+        db.close();
         return eventList;
     }
 
@@ -79,8 +79,10 @@ public class EventController {
 
         // Prepare data
 
-        String startTimeText = AppConfig.DATE_FORMAT.format(event.getStartTime().getTime());
-        String endTimeText = AppConfig.DATE_FORMAT.format(event.getEndTime().getTime());
+//        String startTimeText = AppConfig.DATE_FORMAT.format(event.getStartTime().getTime());
+//        String endTimeText = AppConfig.DATE_FORMAT.format(event.getEndTime().getTime());
+        String startTimeText = AppConfig.TIME_FORMAT.format((double)event.getStartTime());
+        String endTimeText = AppConfig.TIME_FORMAT.format((double)event.getEndTime());
 
         String room = event.getLocation()!=null?event.getLocation():"";
 
@@ -93,6 +95,7 @@ public class EventController {
 
         // Add to DB
         long rowId = db.insert(EventEntry.TABLE_NAME, null, values);
+        db.close();
         return (int)rowId;
 
     }
@@ -121,7 +124,8 @@ public class EventController {
         // Get data
         String sqlString = "SELECT * FROM " + EventEntry.TABLE_NAME + " JOIN " + CourseEntry.TABLE_NAME
                 + " ON " + EventEntry.ATTRIBUTE_EVENT_COURSE_ID + " = " + CourseEntry.ATTRIBUTE_COURSE_ID +
-                " WHERE " + EventEntry.ATTRIBUTE_EVENT_DAY + " = ? ;";
+                " WHERE " + EventEntry.ATTRIBUTE_EVENT_DAY + " = ? " +
+                " ORDER BY " + EventEntry.ATTRIBUTE_EVENT_START_TIME + " ASC; ";
         String [] sqlArgs = {
                 day.getId()
         };
@@ -134,8 +138,30 @@ public class EventController {
             eventList.add(event);
         }
 
+        db.close();
+
         return eventList;
 
+    }
+
+    public int removeEvent(Event event){
+
+        if(event == null){
+            return -1;
+        }
+
+        CourseTableDBHelper dbHelper = new CourseTableDBHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        // Prepare data
+        String filter = EventEntry.ATTRIBUTE_EVENT_ID + " = ?";
+        String[] filterArgs = { event.getId()+"" };
+
+        // Delete
+        int affectedRow = db.delete(EventEntry.TABLE_NAME, filter, filterArgs);
+
+        db.close();
+        return  affectedRow;
     }
 
     public static Event orm(Cursor cursor){
@@ -148,22 +174,16 @@ public class EventController {
         String endTimeText = cursor.getString(cursor.getColumnIndex(EventEntry.ATTRIBUTE_EVENT_END_TIME));
         String location = cursor.getString(cursor.getColumnIndex(EventEntry.ATTRIBUTE_EVENT_LOCATION));
 
-        Calendar startTime = Calendar.getInstance();
-        int[] startTa = EventController.getTimeLengthText(startTimeText);
-        startTime.set(Calendar.HOUR_OF_DAY, startTa[0]);
-        startTime.set(Calendar.MINUTE, startTa[1]);
-
-        Calendar endTime = Calendar.getInstance();
-        int[] endTa = EventController.getTimeLengthText(endTimeText);
-        endTime.set(Calendar.HOUR_OF_DAY, endTa[0]);
-        endTime.set(Calendar.MINUTE, endTa[1]);
-
         Course course = CourseController.orm(cursor);
+
+        int startTime = Integer.parseInt(startTimeText);
+        int endTime = Integer.parseInt(endTimeText);
 
         // Set object
         event.setId(id);
         event.setDay(Day.getDayById(day));
-        event.setStartTime(endTime);
+        event.setStartTime(startTime);
+        event.setEndTime(endTime);
         event.setLocation(location);
         event.setCourse(course);
 

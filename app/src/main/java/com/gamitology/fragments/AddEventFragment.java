@@ -15,6 +15,7 @@ import android.widget.TimePicker;
 
 import com.gamitology.adapters.CourseOptionAdapter;
 import com.gamitology.adapters.DayAdapter;
+import com.gamitology.coursetable.AppConfig;
 import com.gamitology.coursetable.R;
 import com.gamitology.coursetable.databinding.AddEventFragmentLayoutBinding;
 import com.gamitology.database.CourseController;
@@ -23,6 +24,7 @@ import com.gamitology.models.Course;
 import com.gamitology.models.Day;
 import com.gamitology.models.Event;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -129,11 +131,15 @@ public class AddEventFragment extends Fragment {
                 return new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        // Set text in field
                         startTimeText.setText(i + " : " + i1);
-                        Calendar c = Calendar.getInstance();
-                        c.set(Calendar.HOUR_OF_DAY, i);
-                        c.set(Calendar.MINUTE, i1);
-                        event.setStartTime(c);
+
+                        // Set data format
+                        String hh = AppConfig.TIME_2_CHAR_FORMAT.format(i);
+                        String mm = AppConfig.TIME_2_CHAR_FORMAT.format(i1);
+                        String timeNumber = hh + "" + mm;
+                        int startTime = Integer.parseInt(timeNumber);
+                        event.setStartTime(startTime);
                     }
                 };
             }
@@ -158,10 +164,13 @@ public class AddEventFragment extends Fragment {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
                         endTimeText.setText(i + " : " + i1);
-                        Calendar c = Calendar.getInstance();
-                        c.set(Calendar.HOUR_OF_DAY, i);
-                        c.set(Calendar.MINUTE, i1);
-                        event.setEndTime(c);
+
+                        // Set data format
+                        String hh = AppConfig.TIME_2_CHAR_FORMAT.format(i);
+                        String mm = AppConfig.TIME_2_CHAR_FORMAT.format(i1);
+                        String timeNumber = hh + "" + mm;
+                        int endTime = Integer.parseInt(timeNumber);
+                        event.setEndTime(endTime);
                     }
                 };
             }

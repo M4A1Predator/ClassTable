@@ -36,4 +36,14 @@ public class ExampleUnitTest {
 
         assertEquals("09:30", text);
     }
+
+    @Test
+    public void timeNumber() throws Exception {
+
+        int i = 9;
+        int i1 = 00;
+
+        String text = (i) + "";
+        assertEquals("900", text);
+    }
 }

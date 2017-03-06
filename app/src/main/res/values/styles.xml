@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">#fff</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -17,10 +18,36 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- MainTheme -->
+    <style name="MainTheme" parent="Theme.AppCompat.Light">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
     <!-- Course List Item -->
     <style name="CourseListItem" parent="android:Theme.Light">
         <item name="android:textSize">@dimen/course_list_item_text_size</item>
         <item name="android:layout_marginLeft">@dimen/course_list_item_margin_left</item>
     </style>
+
+    <!-- Event List Item -->
+    <style name="EventListItem" parent="android:Theme.Black">
+        <!--<item name="android:background">#10E0FF</item>-->
+        <item name="android:textColor">#000</item>
+    </style>
+    <style name="EventListItemTimeText" parent="android:Theme.Black">
+        <item name="android:textSize">@dimen/event_list_item_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#000</item>
+    </style>
+    <style name="EventListItemMainText" parent="android:Theme.Black">
+        <item name="android:textSize">@dimen/event_list_item_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#000</item>
+    </style>
+    <style name="EventListItemNameText" parent="EventListItemMainText">
+        <item name="android:textStyle">normal</item>
+    </style>
+
 
 </resources>

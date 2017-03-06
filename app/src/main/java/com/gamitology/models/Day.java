@@ -127,12 +127,13 @@ public class Day {
 
         int dow = c.get(Calendar.DAY_OF_WEEK);
         switch (dow){
-            case Calendar.MONDAY: index = 0;
-            case Calendar.TUESDAY: index = 1;
-            case Calendar.WEDNESDAY: index  = 2;
-            case Calendar.THURSDAY: index  = 3;
-            case Calendar.FRIDAY: index = 4;
-            case Calendar.SATURDAY: index = 5;
+            case Calendar.MONDAY: index = 0; break;
+            case Calendar.TUESDAY: index = 1; break;
+            case Calendar.WEDNESDAY: index  = 2; break;
+            case Calendar.THURSDAY: index  = 3; break;
+            case Calendar.FRIDAY: index = 4; break;
+            case Calendar.SATURDAY: index = 5; break;
+            default: index = 0;
         }
 
         return index;

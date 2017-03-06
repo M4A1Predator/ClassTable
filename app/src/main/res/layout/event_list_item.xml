@@ -10,9 +10,13 @@
         <variable
             name="startTime"
             type="String"/>
+        <variable
+            name="endTime"
+            type="String"/>
     </data>
 
     <RelativeLayout
+        android:id="@+id/event_list_item_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -28,35 +32,105 @@
                 android:orientation="horizontal"
                 android:weightSum="1">
 
-                <TextView
+                <!-- TIME -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@{event.course.code}"/>
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_weight="0.8"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        style="@style/EventListItemTimeText"
+                        android:text="@{startTime}" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="|"
+                        style="@style/EventListItemTimeText"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        style="@style/EventListItemTimeText"
+                        android:text="@{endTime}" />
+
+                </LinearLayout>
+
+                <!-- Code and location -->
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:textAlignment="center"
-                    android:text="@{event.course.name}"/>
+                    android:layout_weight="0.3">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:orientation="horizontal"
+                            android:weightSum="1"
+                            android:layout_weight="0.5"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                style="@style/EventListItemMainText"
+                                android:text="@{event.course.code}"/>
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:orientation="horizontal"
+                            android:weightSum="1"
+                            android:layout_weight="0.5"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="#000"
+                                android:text="@{event.location}"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Course name -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:weightSum="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        style="@style/EventListItemNameText"
+                        android:text="@{event.course.name}"/>
+
+                </LinearLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:textAlignment="center"
-                    android:text="@{startTime}"/>
-
-            </LinearLayout>
+            
         </LinearLayout>
 
     </RelativeLayout>

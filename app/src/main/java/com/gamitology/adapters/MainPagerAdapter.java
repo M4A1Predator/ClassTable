@@ -46,7 +46,8 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
 
         Day day = Day.getDayByIndex(position);
+        String title = day.getId().substring(0, 1).toUpperCase() + day.getId().substring(1);
 
-        return day.getId();
+        return title;
     }
 }

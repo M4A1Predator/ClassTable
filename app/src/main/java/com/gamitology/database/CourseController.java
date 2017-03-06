@@ -64,7 +64,7 @@ public class CourseController {
             // Add to list
             courseList.add(course);
         }
-
+        db.close();
         return courseList;
 
     }
@@ -87,6 +87,7 @@ public class CourseController {
 
         // Insert
         long newRowId = db.insert(CourseEntry.TABLE_NAME, null, values);
+        db.close();
         return (int)newRowId;
     }
 
@@ -107,6 +108,7 @@ public class CourseController {
 
         // Delete
         int affectedRow = db.delete(CourseEntry.TABLE_NAME, filter, args);
+        db.close();
         return affectedRow;
 
     }

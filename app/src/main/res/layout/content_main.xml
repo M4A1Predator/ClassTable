@@ -11,12 +11,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.gamitology.coursetable.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_main"
+    style="@style/MainTheme">
 
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent"
+        ></FrameLayout>
 
 </RelativeLayout>

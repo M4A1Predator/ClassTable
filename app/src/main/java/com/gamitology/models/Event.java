@@ -1,5 +1,7 @@
 package com.gamitology.models;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Calendar;
 
 /**
@@ -10,8 +12,8 @@ public class Event {
 
     private int id;
     private Day day;
-    private Calendar startTime;
-    private Calendar endTime;
+    private int startTime;
+    private int endTime;
     private String location;
     private Course course;
 
@@ -34,11 +36,11 @@ public class Event {
         this.day = day;
     }
 
-    public Calendar getEndTime() {
+    public Integer getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Calendar endTime) {
+    public void setEndTime(Integer endTime) {
         this.endTime = endTime;
     }
 
@@ -58,14 +60,28 @@ public class Event {
         this.location = location;
     }
 
-    public Calendar getStartTime() {
+    public Integer getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Calendar startTime) {
+    public void setStartTime(Integer startTime) {
         this.startTime = startTime;
     }
 
+    public static String getTimeText(int time) {
+
+        String text = " - ";
+
+        int hour = time / 100;
+        int min = time % 100;
+
+        DecimalFormat decimalFormat = new DecimalFormat("00");
+
+        text = decimalFormat.format(hour) + ':' + decimalFormat.format(min);
+
+        return text;
+
+    }
 
     @Override
     public String toString() {
@@ -78,4 +94,7 @@ public class Event {
                 ", location='" + location + '\'' +
                 '}';
     }
+
+
+
 }

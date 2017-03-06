@@ -1,13 +1,17 @@
 package com.gamitology.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 
 import com.gamitology.coursetable.AppConfig;
+import com.gamitology.coursetable.R;
 import com.gamitology.coursetable.databinding.EventListItemBinding;
 import com.gamitology.models.Event;
 
@@ -35,16 +39,20 @@ public class EventAdapter extends ArrayAdapter<Event> {
     public View getView(int position, View convertView, ViewGroup parent) {
         EventListItemBinding binding = EventListItemBinding.inflate(LayoutInflater.from(getContext()));
         View view = binding.getRoot();
+        view.findViewById(R.id.event_list_item_layout).setBackgroundColor(Color.parseColor("#10E0FF"));
 
         // Set data
         Event event = getItem(position);
-
         binding.setEvent(event);
 
         // Set startime text
         String startTimeText = " - ";
-        startTimeText = AppConfig.DATE_FORMAT.format(event.getStartTime().getTime());
+        startTimeText = Event.getTimeText(event.getStartTime());
         binding.setStartTime(startTimeText);
+
+        String endTimeText = " - ";
+        endTimeText = Event.getTimeText(event.getEndTime());
+        binding.setEndTime(endTimeText);
 
         return view;
     }
