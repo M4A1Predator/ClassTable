@@ -79,14 +79,45 @@ public class ExampleInstrumentedTest {
     public void getEventDay(){
         Context appContext = InstrumentationRegistry.getTargetContext();
         EventController eventController = new EventController(appContext);
-        List<Event> eventList = eventController.getEventByDay(Day.getDayByIndex(1));
+        List<Event> eventList = eventController.getEventByDay(Day.getDayByIndex(0));
 
         for (Event event : eventList){
             System.out.println(event.toString());
             Log.d(" ======= ", event.toString());
         }
 
-        assertEquals(eventList.size()+"", "1");
+        eventList = this.addEventChill(eventList);
 
+        assertEquals(eventList.size()+"", "3");
+
+    }
+
+    public List<Event> addEventChill(List<Event> eventList){
+
+        if(eventList.size() == 0){
+            return eventList;
+        }
+
+        // Prepare new list
+        List<Event> newEventList = eventList;
+
+        // Get first event's time
+        int endTime = eventList.get(0).getEndTime();
+
+        // Calculate chill time event
+        for(int i=1;i<eventList.size();i++){
+
+            // Compare endtime with next start time
+            int diffTime = eventList.get(i).getStartTime() - endTime;
+
+            // If more than one hour
+            if(diffTime > 100){
+                // Add chill event
+                Event chillEvent = new Event();
+                newEventList.add(i, chillEvent);
+            }
+        }
+
+        return newEventList;
     }
 }

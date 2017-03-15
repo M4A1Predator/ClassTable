@@ -37,12 +37,22 @@ public class EventAdapter extends ArrayAdapter<Event> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        // Get event
+        Event event = getItem(position);
+
+        // If this is not class event
+        if(event.getCourse() == null){
+            View view = LayoutInflater.from(getContext()).inflate(R.layout.event_chill_list_item, parent, false);
+            return view;
+        }
+
+        // Set view layout
         EventListItemBinding binding = EventListItemBinding.inflate(LayoutInflater.from(getContext()));
         View view = binding.getRoot();
         view.findViewById(R.id.event_list_item_layout).setBackgroundColor(Color.parseColor("#10E0FF"));
 
         // Set data
-        Event event = getItem(position);
         binding.setEvent(event);
 
         // Set startime text

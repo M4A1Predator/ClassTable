@@ -24,6 +24,7 @@ import com.gamitology.handlers.EventOptionHandler;
 import com.gamitology.models.Day;
 import com.gamitology.models.Event;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,6 +56,9 @@ public class TableFragment extends Fragment {
         // Get event list by day
         EventController eventController = new EventController(getContext());
         List<Event> eventList = eventController.getEventByDay(this.day);
+
+        // Calculate chill time
+        eventList = this.addEventChill(eventList);
 
         // Set list of events
         eventListView = (ListView)view.findViewById(R.id.table_event_list);
@@ -94,5 +98,38 @@ public class TableFragment extends Fragment {
                 return false;
             }
         };
+    }
+
+    public List<Event> addEventChill(List<Event> eventList){
+
+        if(eventList.size() == 0){
+            return eventList;
+        }
+
+        // Prepare new list
+        List<Event> newEventList = new ArrayList<Event>();
+
+        // Get first event's time
+        int endTime = eventList.get(0).getEndTime();
+
+        // Add first event
+        newEventList.add(eventList.get(0));
+
+        // Calculate chill time event
+        for(int i=1;i<eventList.size();i++){
+
+            // Compare endtime with next start time
+            int diffTime = eventList.get(i).getStartTime() - endTime;
+            Log.d("DIFF TIME ==== ", diffTime+"");
+            // If more than one hour
+            if(diffTime > 100){
+                // Add chill event
+                Event chillEvent = new Event();
+                newEventList.add(chillEvent);
+            }
+            newEventList.add(eventList.get(i));
+        }
+
+        return newEventList;
     }
 }
