@@ -17,4 +17,7 @@
     <!-- Event List Item -->
     <dimen name="event_list_item_text_size">18dp</dimen>
 
+    <!-- Bottom Button -->
+    <dimen name="bottom_button">60dp</dimen>
+
 </resources>

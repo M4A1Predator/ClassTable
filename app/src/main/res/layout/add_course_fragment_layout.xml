@@ -22,6 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={course.code}"
+                android:textColor="@color/textMainColor"
+                android:textColorHint="@color/textHintColor"
                 android:hint="CODE"/>
 
             <EditText
@@ -29,6 +31,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={course.name}"
+                android:textColor="@color/textMainColor"
+                android:textColorHint="@color/textHintColor"
                 android:hint="Name"/>
 
             <Button

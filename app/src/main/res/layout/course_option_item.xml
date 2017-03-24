@@ -16,7 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/bg_dark">
 
             <TextView
                 android:id="@+id/course_option_item_code"
@@ -24,8 +25,9 @@
                 android:hint="55555"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textAlignment="center" />
-
+                android:textAlignment="center"
+                android:textColor="@color/textMainColor"/>
         </LinearLayout>
+
     </LinearLayout>
 </layout>

@@ -48,6 +48,10 @@
     <style name="EventListItemNameText" parent="EventListItemMainText">
         <item name="android:textStyle">normal</item>
     </style>
+    <style name="EventChillItem" parent="android:Theme.Black">
+        <item name="android:background">#ff9c4c</item>
+        <item name="android:textColor">@color/textBlackColor</item>
+    </style>
 
 
 </resources>

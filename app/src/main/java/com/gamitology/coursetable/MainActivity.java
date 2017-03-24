@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Assign Fragment
+        // Assign Main Fragment
         this.mainFragment = new MainFragment();
 
         // Start Default fragment
