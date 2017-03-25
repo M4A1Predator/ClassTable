@@ -39,7 +39,7 @@
                     android:text="DEL"
                     android:onClick="@{handler.deleteCourse(course)}"
                     android:layout_weight="0.2"
-                    />
+                    style="@style/MainBtn"/>
 
             </LinearLayout>
 

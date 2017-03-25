@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,12 +82,13 @@ public class TableFragment extends Fragment {
                 Event selectedEvent = (Event) eventListView.getItemAtPosition(i);
 
                 // Set dialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.EventOptionDialog));
                 EventOptionDialogBinding binding = EventOptionDialogBinding.inflate(getLayoutInflater(null));
                 View eventDialog = binding.getRoot();
                 binding.setEvent(selectedEvent);
                 builder.setView(eventDialog);
                 builder.setTitle("Event Options");
+
 
                 final AlertDialog dialog = builder.create();
 
@@ -109,7 +111,7 @@ public class TableFragment extends Fragment {
         // Prepare new list
         List<Event> newEventList = new ArrayList<Event>();
 
-        // Get first event's time
+        // Get first event's end time
         int endTime = eventList.get(0).getEndTime();
 
         // Add first event
@@ -120,13 +122,18 @@ public class TableFragment extends Fragment {
 
             // Compare endtime with next start time
             int diffTime = eventList.get(i).getStartTime() - endTime;
-            Log.d("DIFF TIME ==== ", diffTime+"");
+            Log.d("DIFF TIME ==== ", diffTime + "");
             // If more than one hour
             if(diffTime > 100){
                 // Add chill event
                 Event chillEvent = new Event();
                 newEventList.add(chillEvent);
             }
+
+            // Set new end time
+            endTime = eventList.get(i).getEndTime();
+
+            // Add event to new list
             newEventList.add(eventList.get(i));
         }
 

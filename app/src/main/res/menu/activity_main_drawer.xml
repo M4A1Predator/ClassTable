@@ -12,10 +12,6 @@
             android:icon="@drawable/ic_menu_gallery"
             />
         <item
-            android:id="@+id/nav_events"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Events" />
-        <item
             android:id="@+id/nav_add_event"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Add Event" />
@@ -27,10 +23,6 @@
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
         </menu>
     </item>
 

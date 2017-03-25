@@ -23,6 +23,9 @@
         <item name="android:background">@color/colorPrimaryDark</item>
         <item name="android:textColor">#fff</item>
     </style>
+    <style name="MainBtn">
+        <item name="android:textColor">@color/textBlackColor</item>
+    </style>
 
     <!-- Course List Item -->
     <style name="CourseListItem" parent="android:Theme.Light">
@@ -50,8 +53,24 @@
     </style>
     <style name="EventChillItem" parent="android:Theme.Black">
         <item name="android:background">#ff9c4c</item>
+        <item name="android:padding">6dp</item>
+    </style>
+    <style name="EventChillText" parent="android:Theme.Black">
+        <item name="android:textColor">@color/textBlackColor</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/event_list_item_text_size</item>
+    </style>
+    
+    <!-- Event option dialog -->
+    <style name="EventOptionDialog">
+        <item name="android:textColor">@color/textBlackColor</item>
+        <item name="android:textColorPrimary">@color/textBlackColor</item>
+    </style>
+    <style name="EventOptionDialogText">
         <item name="android:textColor">@color/textBlackColor</item>
     </style>
-
+    <style name="EventOptionDialogBtn">
+        <item name="android:textColor">@color/textBlackColor</item>
+    </style>
 
 </resources>

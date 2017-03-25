@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_button"
         android:text="Add Course"
-        />
+        style="@style/MainBtn"/>
 
 
 </LinearLayout>
