@@ -13,5 +13,6 @@ public class AppConfig {
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("HH:mm");
     public static final DecimalFormat TIME_FORMAT = new DecimalFormat("0000");
     public static final DecimalFormat TIME_2_CHAR_FORMAT = new DecimalFormat("00");
+    public static final String CURRENT_TABLE_INDEX = "current_table_index";
 
 }

@@ -122,7 +122,6 @@ public class TableFragment extends Fragment {
 
             // Compare endtime with next start time
             int diffTime = eventList.get(i).getStartTime() - endTime;
-            Log.d("DIFF TIME ==== ", diffTime + "");
             // If more than one hour
             if(diffTime > 100){
                 // Add chill event

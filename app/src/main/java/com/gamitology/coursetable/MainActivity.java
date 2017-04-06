@@ -1,5 +1,7 @@
 package com.gamitology.coursetable;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -111,10 +113,20 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+
+            // Get current table page index
+            SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+            int currentDayIndex = sharedPreferences.getInt(AppConfig.CURRENT_TABLE_INDEX, Context.MODE_PRIVATE);
+
+            this.mainFragment = new MainFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("dayIndex", currentDayIndex);
+            this.mainFragment.setArguments(bundle);
             replaceFragmentInContainer(this.mainFragment);
         } else if (id == R.id.nav_courses) {
             CourseListFragment courseListFragment = new CourseListFragment();
